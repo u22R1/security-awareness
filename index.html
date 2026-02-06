@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تنبيه أمني</title>
+
+  <style>
+    body {
+      background-color: #020617;
+      color: white;
+      font-family: Arial, Tahoma, sans-serif;
+      direction: rtl;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .flash {
+      animation: flash 0.7s infinite;
+    }
+
+    @keyframes flash {
+      0% { background-color: #020617; }
+      50% { background-color: #7f1d1d; }
+      100% { background-color: #020617; }
+    }
+
+    .box {
+      max-width: 700px;
+      margin: 100px auto;
+      background: #0f172a;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(220,38,38,0.8);
+    }
+
+    h1 {
+      color: #ef4444;
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 14px 26px;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🔊 صوت الإنذار -->
+<audio id="alarm">
+  <source src="https://orangefreesounds.com/wp-content/uploads/2016/10/Alarm-tone.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box">
+  <h1>🚨 تنبيه أمني</h1>
+
+  <p><strong>تم رصد نشاط غير اعتيادي على هذا الجهاز.</strong></p>
+
+  <p>
+    هذه رسالة توعوية ضمن حملة الأمن السيبراني
+    لرفع الوعي بمخاطر الروابط ورموز QR غير الموثوقة.
+  </p>
+
+  <p>لم يتم اختراق جهازك فعليًا.</p>
+
+  <button onclick="startAlert()">تشغيل التنبيه</button>
+</div>
+
+<script>
+  function startAlert() {
+    // تشغيل الصوت
+    document.getElementById("alarm").play();
+
+    // اهتزاز (للجوال)
+    if (navigator.vibrate) {
+      navigator.vibrate([800, 300, 800, 300, 1200]);
+    }
+
+    // وميض الشاشة
+    document.body.classList.add("flash");
+  }
+</script>
+
+</body>
+</html>
